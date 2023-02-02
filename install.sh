@@ -64,8 +64,15 @@ function installFixes() {
   then sed -i 's/GRUB_CMDLINE_LINUX_DEFAULT="quiet splash"/GRUB_CMDLINE_LINUX_DEFAULT="quiet splash mem_sleep_default=s2idle"/g' /etc/default/grub
   fi
   sudo update-grub
-  echo"reboot and test if your trackpad works"
+  echo "reboot and test if your trackpad works"
 }
+function installGraphics(){
+  #check current drivers
+  sudo ubuntu-drivers autoinstall
+
+}
+
+
 isRoot
 initialQuestions
  manageMenu
