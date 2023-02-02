@@ -11,7 +11,7 @@ function isRoot() {
 
 function initialQuestions() {
         echo "Welcome to the Razer Blade fixer script!"
-        echo "The git repository is available at: https://github.com/WantClue/Ubuntu-Razer-Blade-15-Base-Mid-2021/s"
+        echo "The git repository is available at: https://github.com/WantClue/Ubuntu-Razer-Blade-15-Base-Mid-2021"
         echo ""
         echo ""
         echo ""
