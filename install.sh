@@ -75,3 +75,5 @@ sudo systemctl status acpi-wake-andy.service # check status
   echo"after this run sudo update-grub"
 
 }
+initialQuestions
+ manageMenu
