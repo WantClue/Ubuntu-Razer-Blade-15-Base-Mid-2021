@@ -20,26 +20,17 @@ function initialQuestions() {
 }
 function manageMenu() {
        echo "What do you want to do?"
-	     echo "   1) Install everything."
-	     echo "	This will automatically all fixes at once"
-	     echo "   2) Fix Trackpad issue"
-	     echo "   3) Install nvidia driver RTX3070 mobile"
+	     echo "   1) Fix trackpad issue"
 	     echo "   4) Exit"
  
-      until [[ ${MENU_OPTION} =~ ^[1-4]$ ]]; do
-		read -rp "Select an option [1-4]: " MENU_OPTION
+      until [[ ${MENU_OPTION} =~ ^[1-2]$ ]]; do
+		read -rp "Select an option [1-2]: " MENU_OPTION
 	done
 	    case "${MENU_OPTION}" in
 	      1)
 		      installFixes
 		      ;;
 	      2)
-		      trackpadFix
-		      ;;
-	      3)
-		      nvidiaInstall3070
-		      ;;
-	      4)
 		      exit 0
 		      ;;
 	      esac
