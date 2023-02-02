@@ -71,7 +71,7 @@ sudo systemctl status acpi-wake-andy.service # check status
   cat /sys/power/mem_sleep
   echo"if output is [s2idle] deep than reboot and test if your trackpad works"
   echo"if output is s2idle [deep] you need to change the /etc/default/grub file to"
-  echo "GRUB_CMDLINE_LINUX_DEFAULT="quiet splash mem_sleep_default=s2idle" 
+  echo "GRUB_CMDLINE_LINUX_DEFAULT="quiet splash mem_sleep_default=s2idle"" 
   echo "after this run sudo update-grub"
 
 }
