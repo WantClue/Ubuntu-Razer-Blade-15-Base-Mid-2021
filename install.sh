@@ -62,6 +62,7 @@ function installFixes() {
   s2idle=$(cat /sys/power/mem_sleep |grep s2idle [deep])
   if $s2idle
   then sed -i 's/GRUB_CMDLINE_LINUX_DEFAULT="quiet splash"/GRUB_CMDLINE_LINUX_DEFAULT="quiet splash mem_sleep_default=s2idle"/g' /etc/default/grub
+  fi
   sudo update-grub
   echo"reboot and test if your trackpad works"
 }
