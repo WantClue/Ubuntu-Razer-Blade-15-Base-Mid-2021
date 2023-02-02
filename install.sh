@@ -59,13 +59,12 @@ function installFixes() {
   echo "NVreg_S0ixPowerManagementVideoMemoryThreshold=10000" >> /etc/modprobe.d/nvidia-s2idle.conf
   
   #check status output
-  cat /sys/power/mem_sleep
-  echo"if output is [s2idle] deep than reboot and test if your trackpad works"
-  echo"if output is s2idle [deep] you need to change the /etc/default/grub file to"
-  
-  echo "GRUB_CMDLINE_LINUX_DEFAULT=\"quiet splash mem_sleep_default=s2idle\"" 
-  echo "after this run sudo update-grub"
-
+  s2idle=$(cat /sys/power/mem_sleep |grep s2idle [deep])
+  if $s2idle
+  then sed -i 's/GRUB_CMDLINE_LINUX_DEFAULT="quiet splash"/GRUB_CMDLINE_LINUX_DEFAULT="quiet splash mem_sleep_default=s2idle"/g' /etc/default/grub
+  sudo update-grub
+  echo"reboot and test if your trackpad works"
 }
+isRoot
 initialQuestions
  manageMenu
