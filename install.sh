@@ -21,16 +21,24 @@ function initialQuestions() {
 function manageMenu() {
        echo "What do you want to do?"
 	     echo "   1) Fix trackpad issue"
+       echo "   2) Install Nvidia driver"
+       echo "   3) Delete Nvidia driver"
 	     echo "   4) Exit"
  
-      until [[ ${MENU_OPTION} =~ ^[1-2]$ ]]; do
-		read -rp "Select an option [1-2]: " MENU_OPTION
+      until [[ ${MENU_OPTION} =~ ^[1-4]$ ]]; do
+		read -rp "Select an option [1-4]: " MENU_OPTION
 	done
 	    case "${MENU_OPTION}" in
 	      1)
 		      installFixes
 		      ;;
-	      2)
+        2)
+		      installGraphics
+		      ;;
+        3)
+		      purgeNvidia
+		      ;;    
+	      4)
 		      exit 0
 		      ;;
 	      esac
@@ -67,11 +75,29 @@ function installFixes() {
   echo "reboot and test if your trackpad works"
 }
 function installGraphics(){
-  #check current drivers
+  #update current drivers
   sudo ubuntu-drivers autoinstall
+  #add autoupdate functionality
+  touch /etc/systemd/system/update-nvidia.service
+  echo "[Unit]" > /etc/systemd/system/update-nvidia.service
+  echo "Description= Update Nvidia Driver" >> /etc/systemd/system/update-nvidia.service
+  echo "After=network-online.target" >> /etc/systemd/system/update-nvidia.service
+  echo "" >> /etc/systemd/system/update-nvidia.service
+  echo "[Service]" >> /etc/systemd/system/update-nvidia.service
+  echo "Type=oneshot" >> /etc/systemd/system/update-nvidia.service
+  echo "ExecStart=/usr/bin/ubuntu-drivers install" >> /etc/systemd/system/update-nvidia.service
+  echo "" >> /etc/systemd/system/update-nvidia.service
+  echo "[Install]" >> /etc/systemd/system/update-nvidia.service
+  echo "WantedBy=multi-user.target" >> /etc/systemd/system/update-nvidia.service
+
+  sudo systemctl enable update-nvidia.service
 
 }
 
+function purgeNvidia(){
+sudo apt purge nvidia-*
+sudo apt autoremove
+}
 
 isRoot
 initialQuestions
