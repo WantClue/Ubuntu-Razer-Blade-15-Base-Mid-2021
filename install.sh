@@ -92,6 +92,8 @@ function installGraphics(){
 
   sudo systemctl enable update-nvidia.service
 
+  echo "go to the nvidia x server to toggle performance settings"
+
 }
 
 function purgeNvidia(){
