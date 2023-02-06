@@ -101,6 +101,35 @@ sudo apt purge nvidia-*
 sudo apt autoremove
 }
 
+function keyChron(){
+
+  echo "What type of functionallity do you want?"
+  echo "1) F-Keys first"
+  echo "2) Shortcuts first"
+  echo "3) Exit"
+
+  ntil [[ ${MENU_OPTION} =~ ^[1-3]$ ]]; do
+		read -rp "Select an option [1-3]: " MENU_OPTION
+	done
+	    case "${MENU_OPTION}" in
+	      1) #change keychron function keys to use F1-12 first
+		      sudo touch /etc/modprobe.d/hid_apple.con
+          echo "options hid_apple fnmode=0" >> /etc/modprobe.d/hid_apple.conf
+          sudo update-initramfs -u
+          echo "Reboot so the changes can take place"
+		      ;;  
+	      2) #cahnge keychron function keys to use functions first
+		      sudo touch /etc/modprobe.d/hid_apple.con
+          echo "options hid_apple fnmode=1" >> /etc/modprobe.d/hid_apple.conf
+          sudo update-initramfs -u
+          echo "Reboot so the changes can take place"
+		      ;;
+        3)
+          exit 0
+          ;;  
+	      esac
+}
+
 isRoot
 initialQuestions
  manageMenu
