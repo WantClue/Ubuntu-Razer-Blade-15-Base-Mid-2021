@@ -113,13 +113,13 @@ function keyChron(){
 	done
 	    case "${MENU_OPTION}" in
 	      1) #change keychron function keys to use F1-12 first
-		      sudo touch /etc/modprobe.d/hid_apple.con
+		      sudo touch /etc/modprobe.d/hid_apple.conf
           echo "options hid_apple fnmode=0" >> /etc/modprobe.d/hid_apple.conf
           sudo update-initramfs -u
           echo "Reboot so the changes can take place"
 		      ;;  
 	      2) #cahnge keychron function keys to use functions first
-		      sudo touch /etc/modprobe.d/hid_apple.con
+		      sudo touch /etc/modprobe.d/hid_apple.conf
           echo "options hid_apple fnmode=1" >> /etc/modprobe.d/hid_apple.conf
           sudo update-initramfs -u
           echo "Reboot so the changes can take place"
